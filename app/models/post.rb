@@ -5,7 +5,6 @@ class Post < ApplicationRecord
     has_many :post_tags, dependent: :destroy
     has_many :tags, through: :post_tags
 
-    #has_and_belongs_to_many :tags
   
     validates :title, presence: { message: 'It’s a book without a name!, how can I get it. Insert a name' }
     validates :content, presence: { message: 'should not be empty. Share your thoughts!' }

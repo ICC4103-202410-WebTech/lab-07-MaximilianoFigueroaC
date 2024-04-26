@@ -45,20 +45,20 @@ Make sure to create the relationships between the tables, so the database is pop
 
 ## Queries
 
-1. Find all the posts that belong to a user with the name "John Doe".
+1. Find all the posts that belong to a user with the name "Nicolas Baeza".
 
 ```ruby
-### Code here
+User.find_by(name: 'Nicolas Baeza')&.posts
 ```
 
-2. Find all the tags that belong to a post with the title "Post 1".
+2. Find all the tags that belong to a post with the title "Indoor Party Ideas for All Ages".
 
 ```ruby
-### Code here
+Post.find_by(title: 'Indoor Party Ideas for All Ages')&.tags
 ```
 
-3. Find all users that have a post with the tag "Tag 1".
+3. Find all users that have a post with the tag "Music".
 
 ```ruby
-### Code here
+Tag.find_by(name: 'Music')&.posts&.map(&:user)&.uniq
 ```

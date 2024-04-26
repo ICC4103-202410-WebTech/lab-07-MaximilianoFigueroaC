@@ -9,13 +9,15 @@
 #   end
 
 # Delete existing records
+PostTag.delete_all
+Tag.delete_all
 Post.delete_all
 User.delete_all
-Tag.delete_all
+
 
 # Create users
 users = [
-  User.create!(name: "Max Figueroa", email: "mfigueroa4@miuandes.cl", password: 'hola123'),
+  User.create!(name: "Maximiliano Figueroa", email: "mfigueroa4@miuandes.cl", password: 'hola123'),
   User.create!(name: "Nicolas Baeza", email: "nabaeza@miuandes.cl", password: 'cars123'),
   User.create!(name: "Gonzalo Massardo", email: "gmassardo@miuandes.cl", password: 'paltas123'),
   User.create!(name: "Martina Nick", email: "mmnick@miuandes.cl", password: 'sur123'),
@@ -33,29 +35,14 @@ tags = [
 
 # Create posts
 posts = [
-  Post.create!(title: "The NEW Partys in Chile", content: "Discover new places to party.", user: users[0], published_at: Time.zone.now),
-  Post.create!(title: "Exploring the Party Scene in Big Cities", content: "Discovering vibrant nightlife and events.", user: users[1], published_at: Time.zone.now),
-  Post.create!(title: "Healthy Eating Habits for a Better Life", content: "Tips and recipes for a balanced diet.", user: users[2], published_at: Time.zone.now),
-  Post.create!(title: "The new style of music TECHENGE", content: "Exploring the diversity of modern music reggaeton + Electronic music.", user: users[3], published_at: Time.zone.now),
-  Post.create!(title: "The Thrill of Climbing Mountains", content: "Experiences from conquering challenging peaks.", user: users[4], published_at: Time.zone.now),
-  Post.create!(title: "Adventures in the patagonia", content: "Exploration and excitement in nature.", user: users[0], published_at: Time.zone.now),
-  Post.create!(title: "Indoor Party Ideas for All Ages", content: "Fun activities and themes for indoor gatherings.", user: users[1], published_at: Time.zone.now),
-  Post.create!(title: "Best places to eat in santiago", content: "The bests burguer turcks in Chile.", user: users[2], published_at: Time.zone.now),
-  Post.create!(title: "The Impact of Music on Mental Health", content: "Understanding music's therapeutic effects.", user: users[3], published_at: Time.zone.now),
-  Post.create!(title: "Tips for Safe Climbing Expeditions", content: "Safety measures and preparation for climbing.", user: users[4], published_at: Time.zone.now)
+  Post.create!(title: "The NEW Partys in Chile", content: "Discover new places to party.", user: users[0], published_at: Time.zone.now, tags: [tags[0]]),
+  Post.create!(title: "Exploring the Party Scene in Big Cities", content: "Discovering vibrant nightlife and events.", user: users[1], published_at: Time.zone.now, tags: [tags[0]]),
+  Post.create!(title: "Healthy Eating Habits for a Better Life", content: "Tips and recipes for a balanced diet.", user: users[2], published_at: Time.zone.now, tags: [tags[1]]),
+  Post.create!(title: "The new style of music TECHENGE", content: "Exploring the diversity of modern music reggaeton + Electronic music.", user: users[3], published_at: Time.zone.now, tags: [tags[2]]),
+  Post.create!(title: "The Thrill of Climbing Mountains", content: "Experiences from conquering challenging peaks.", user: users[4], published_at: Time.zone.now, tags: [tags[3]]),
+  Post.create!(title: "Adventures in the patagonia", content: "Exploration and excitement in nature.", user: users[0], published_at: Time.zone.now, tags: [tags[4]]),
+  Post.create!(title: "Indoor Party Ideas for All Ages", content: "Fun activities and themes for indoor gatherings.", user: users[1], published_at: Time.zone.now, tags: [tags[0]]),
+  Post.create!(title: "Best places to eat in santiago", content: "The bests burguer turcks in Chile.", user: users[2], published_at: Time.zone.now, tags: [tags[1]]),
+  Post.create!(title: "The Impact of Music on Mental Health", content: "Understanding music's therapeutic effects.", user: users[3], published_at: Time.zone.now, tags: [tags[2]]),
+  Post.create!(title: "Tips for Safe Climbing Expeditions", content: "Safety measures and preparation for climbing.", user: users[4], published_at: Time.zone.now, tags: [tags[3]])
 ]
-
-# Associate posts with tags
-posts.each do |post|
-  post.tags << tags.sample
-end
-
-"""
-posts.each_with_index do |post, index|
-  post.tags << tags[index % tags.size]
-end
-
-tags.each_with_index do |tag, index|
-  posts[index % posts.size].tags << tag unless posts[index % posts.size].tags.include?(tag)
-end
-"""
